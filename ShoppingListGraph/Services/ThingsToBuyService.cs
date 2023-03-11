@@ -58,7 +58,7 @@ namespace ShoppingListGraph.Services
 
         public async Task<HttpStatusCode> ResetList(string id)
         {
-            await GraphHelper.ResetListAsync(id);
+            await GraphHelper.DeleteTodoTaskListAsync(id);
             return HttpStatusCode.OK;
         }
     }

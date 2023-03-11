@@ -20,7 +20,7 @@ namespace ShoppingListGraph.Controllers
         {
             ThingsToBuyService service = new ThingsToBuyService();
             ThingsToBuy thingsToBuy = await service.GetData();
-            return View( thingsToBuy);
+            return View(thingsToBuy);
         }
 
         // POST: ShoppingList
@@ -37,24 +37,31 @@ namespace ShoppingListGraph.Controllers
         [Authorize]
         public ActionResult Create(string id)
         {
-            return View( new ListElementWithListId() { Id = null, ListId = id});
+            return View(new ListElementWithListId() { Id = null, ListId = id });
         }
 
         [Authorize, HttpPost]
         public async Task<ActionResult> Create(ListElementWithListId listElement)
         {
             ThingsToBuyService service = new ThingsToBuyService();
-           await service.CreateListElement(listElement);
+            await service.CreateListElement(listElement);
             return RedirectToAction("Index");
         }
 
         //Empty list
-       
+
         [Authorize]
-        public async Task<ActionResult> Reset(string id)
+        public ActionResult Delete(string id)
+        {
+            return View(new ListToDelete() { ListId = id });
+
+        }
+
+        [Authorize, HttpPost]
+        public async Task<ActionResult> Delete(ListToDelete list)
         {
             ThingsToBuyService service = new ThingsToBuyService();
-            await service.ResetList(id);
+            await service.ResetList(list.ListId);
             return RedirectToAction("Index");
         }
     }

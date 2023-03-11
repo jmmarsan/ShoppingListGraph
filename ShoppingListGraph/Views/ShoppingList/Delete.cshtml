@@ -1,0 +1,27 @@
+﻿@model ShoppingListGraph.Models.ListToDelete
+
+@{
+    ViewBag.Title = "Clear list";
+}
+
+<h2>Clear list</h2>
+
+@using (Html.BeginForm()) 
+{
+    
+    <div class="form-horizontal">
+        <h5>List will be clear. Are you sure?</h5>
+        <hr />
+
+        @Html.HiddenFor(model => model.ListId)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-primary btn-large" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

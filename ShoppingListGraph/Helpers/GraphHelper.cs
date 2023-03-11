@@ -81,7 +81,7 @@ namespace ShoppingListGraph.Helpers
             return todoTaskList.CurrentPage.ToList();
         }
 
-        public static async Task<HttpStatusCode> ResetListAsync(string id)
+        public static async Task<HttpStatusCode> DeleteTodoTaskListAsync(string id)
         {
             var graphClient = GetAuthenticatedClient();
             await graphClient.Me.Todo.Lists[id].Request().DeleteAsync();

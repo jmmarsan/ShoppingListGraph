@@ -292,6 +292,7 @@
     <Compile Include="Models\ListElement.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\CachedUser.cs" />
+    <Compile Include="Models\ListToDelete.cs" />
     <Compile Include="Models\ThingsToBuy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ThingsToBuyService.cs" />
@@ -440,6 +441,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\ShoppingList\Create.cshtml" />
+    <Content Include="Views\ShoppingList\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
