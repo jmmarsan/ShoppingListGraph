@@ -15,6 +15,7 @@ using Azure.Core;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System.Xml.Linq;
+using System.Net;
 
 namespace ShoppingListGraph.Helpers
 {
@@ -80,7 +81,12 @@ namespace ShoppingListGraph.Helpers
             return todoTaskList.CurrentPage.ToList();
         }
 
-
+        public static async Task<HttpStatusCode> ResetListAsync(string id)
+        {
+            var graphClient = GetAuthenticatedClient();
+            await graphClient.Me.Todo.Lists[id].Request().DeleteAsync();
+            return HttpStatusCode.OK;
+        }
 
         #endregion
 
@@ -141,9 +147,6 @@ namespace ShoppingListGraph.Helpers
                     user.UserPrincipalName : user.Mail
             };
         }
-
-
-
 
         #endregion
     }

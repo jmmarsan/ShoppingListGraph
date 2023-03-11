@@ -44,8 +44,17 @@ namespace ShoppingListGraph.Controllers
         public async Task<ActionResult> Create(ListElementWithListId listElement)
         {
             ThingsToBuyService service = new ThingsToBuyService();
-            //Save changes
            await service.CreateListElement(listElement);
+            return RedirectToAction("Index");
+        }
+
+        //Empty list
+       
+        [Authorize]
+        public async Task<ActionResult> Reset(string id)
+        {
+            ThingsToBuyService service = new ThingsToBuyService();
+            await service.ResetList(id);
             return RedirectToAction("Index");
         }
     }

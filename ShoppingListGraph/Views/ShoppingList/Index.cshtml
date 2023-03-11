@@ -7,7 +7,7 @@
 
 <h1>Shopping list</h1>
 @Html.ActionLink("Add item", "Create", "ShoppingList", new { id = Model.Id}, new { @class = "btnCreateItem" })
-@Html.ActionLink("Clear list", "Reset", "ShoppingList")
+@Html.ActionLink("Clear list", "Reset", "ShoppingList", new { id = Model.Id }, null)
 @using (Html.BeginForm("Index", "ShoppingList", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.Id)
