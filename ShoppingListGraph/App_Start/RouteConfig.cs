@@ -14,6 +14,10 @@ namespace GasGraph
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Create",
+                url: "ShoppingList/Create",
+                defaults: new { controller = "ShoppingList", action = "Create" });
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

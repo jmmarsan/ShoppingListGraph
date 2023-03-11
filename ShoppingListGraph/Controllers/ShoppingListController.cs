@@ -32,5 +32,21 @@ namespace ShoppingListGraph.Controllers
             ThingsToBuy thingsToBuy = await service.SaveChanges(edit);
             return View(thingsToBuy);
         }
+
+        //GET: Create ListElement
+        [Authorize]
+        public ActionResult Create(string id)
+        {
+            return View( new ListElementWithListId() { Id = null, ListId = id});
+        }
+
+        [Authorize, HttpPost]
+        public async Task<ActionResult> Create(ListElementWithListId listElement)
+        {
+            ThingsToBuyService service = new ThingsToBuyService();
+            //Save changes
+           await service.CreateListElement(listElement);
+            return RedirectToAction("Index");
+        }
     }
 }

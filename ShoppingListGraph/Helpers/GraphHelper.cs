@@ -14,6 +14,7 @@ using System;
 using Azure.Core;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace ShoppingListGraph.Helpers
 {
@@ -42,7 +43,6 @@ namespace ShoppingListGraph.Helpers
                     DisplayName = shoppingListDisplayName
                 });
             }
-        
             return shoppingList;
         }
 
@@ -55,6 +55,20 @@ namespace ShoppingListGraph.Helpers
                 ODataType = null,
                 Status = element.Completed? Microsoft.Graph.TaskStatus.Completed : Microsoft.Graph.TaskStatus.NotStarted,
                 Importance = element.HighPriority? Importance.High : Importance.Normal,
+                Title = element.Title
+            });
+        }
+
+
+        public static async Task<TodoTask> PostTodoTaskAsync(ListElementWithListId element)
+        {
+            var graphClient = GetAuthenticatedClient();
+
+            return await graphClient.Me.Todo.Lists[element.ListId].Tasks.Request().AddAsync(new TodoTask
+            {
+                ODataType = null,
+                Status = element.Completed ? Microsoft.Graph.TaskStatus.Completed : Microsoft.Graph.TaskStatus.NotStarted,
+                Importance = element.HighPriority ? Importance.High : Importance.Normal,
                 Title = element.Title
             });
         }
@@ -127,6 +141,8 @@ namespace ShoppingListGraph.Helpers
                     user.UserPrincipalName : user.Mail
             };
         }
+
+
 
 
         #endregion

@@ -288,6 +288,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\GraphHelper.cs" />
+    <Compile Include="Models\ListElementWithListId.cs" />
     <Compile Include="Models\ListElement.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\CachedUser.cs" />
@@ -438,6 +439,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\ShoppingList\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

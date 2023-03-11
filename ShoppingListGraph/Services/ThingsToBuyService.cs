@@ -1,9 +1,11 @@
-﻿using Microsoft.Graph;
+﻿using Azure;
+using Microsoft.Graph;
 using ShoppingListGraph.Helpers;
 using ShoppingListGraph.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
@@ -46,6 +48,12 @@ namespace ShoppingListGraph.Services
                 await GraphHelper.PatchTodoTaskAsync(edit.Id, element);
             }
             return await GetData();
+        }
+
+        public async Task<HttpStatusCode> CreateListElement(ListElementWithListId element)
+        {
+            await GraphHelper.PostTodoTaskAsync(element);
+            return HttpStatusCode.OK;
         }
     }
 }
