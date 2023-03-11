@@ -23,10 +23,11 @@
             <tr>
 
                 <td>
-                    @Html.HiddenFor(m => Model.Elements[i].Id)
-                    <input type="checkbox" class="chkCompleted"
+                    @Html.HiddenFor(m => m.Elements[i].Id)
+                    @Html.CheckBoxFor(m => m.Elements[i].Completed)
+                    @*<input type="checkbox" class="chkCompleted"
                            @String.Format("{0}", Model.Elements[i].Completed ? "checked" : string.Empty)
-                           id=@String.Format("chkCompleted_{0}", Model.Elements[i].Id) />
+                           id=@String.Format("chkCompleted_{0}", Model.Elements[i].Id) />*@
                 </td>
                 <td class=@String.Format("{0}", Model.Elements[i].Completed ? "titleCompleted" : string.Empty)
                     id=@String.Format("titleCompleted_{0}", Model.Elements[i].Id)>
