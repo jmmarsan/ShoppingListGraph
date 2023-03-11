@@ -10,6 +10,10 @@ using Microsoft.Graph;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using System;
+using Azure.Core;
+using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace ShoppingListGraph.Helpers
 {
@@ -40,6 +44,17 @@ namespace ShoppingListGraph.Helpers
             }
         
             return shoppingList;
+        }
+
+        public static async Task<TodoTask> PatchTodoTaskAsync(string id, string elementId, bool completed)
+        {
+            var graphClient = GetAuthenticatedClient();
+
+            return await graphClient.Me.Todo.Lists[id].Tasks[elementId].Request().UpdateAsync(new TodoTask
+            {
+                ODataType = null,
+                Status = completed? Microsoft.Graph.TaskStatus.Completed : Microsoft.Graph.TaskStatus.NotStarted,
+            });
         }
 
         public static async Task<IEnumerable<TodoTask>> GetTodoTasksAsync(TodoTaskList taskList) 
@@ -125,6 +140,7 @@ namespace ShoppingListGraph.Helpers
                     user.UserPrincipalName : user.Mail
             };
         }
+
 
         #endregion
     }

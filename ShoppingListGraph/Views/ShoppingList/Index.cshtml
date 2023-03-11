@@ -8,45 +8,41 @@
 <h1>Shopping list</h1>
 @using (Html.BeginForm("Index", "ShoppingList", FormMethod.Post))
 {
+    @Html.HiddenFor(m => m.Id)
+
     <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Status</th>
-            <th scope="col">Item</th>
-            <th scope="col">Importance</th>
-            @*<th scope="col">Created</th>*@
-        </tr>
-    </thead>
-    <tbody>
-        @for (int i = 0; i<Model.Elements.Count; i++)
-        {
+        <thead>
             <tr>
-
-                <td>
-                    @Html.HiddenFor(m => m.Elements[i].Id)
-                    @Html.CheckBoxFor(m => m.Elements[i].Completed)
-                    @*<input type="checkbox" class="chkCompleted"
-                           @String.Format("{0}", Model.Elements[i].Completed ? "checked" : string.Empty)
-                           id=@String.Format("chkCompleted_{0}", Model.Elements[i].Id) />*@
-                </td>
-                <td class=@String.Format("{0}", Model.Elements[i].Completed ? "titleCompleted" : string.Empty)
-                    id=@String.Format("titleCompleted_{0}", Model.Elements[i].Id)>
-                    @Model.Elements[i].Title
-                </td>
-
-
-
-                <td>
-                    @if (Model.Elements[i].HighPriority)
-                    {
-                        <img src="~/Content/Images/important.png" class="imgImportant"
-                             id=@String.Format("imgImportant_{0}", Model.Elements[i].Id) />
-                    }
-                </td>
-                @*<td>@Convert.ToDateTime(item.CreatedDateTime).ToString("M/d/yy h:mm tt")</td>*@
+                <th scope="col">Status</th>
+                <th scope="col">Item</th>
+                <th scope="col">Importance</th>
+                @*<th scope="col">Created</th>*@
             </tr>
-        }
-    </tbody>
-</table>
-<input type="submit" value="submit" />
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Elements.Count; i++)
+            {
+                <tr>
+
+                    <td>
+                        @Html.HiddenFor(m => m.Elements[i].Id)
+                        @Html.CheckBoxFor(m => m.Elements[i].Completed, new { @class = "chkCompleted" })
+                    </td>
+                    <td class=@String.Format("{0}", Model.Elements[i].Completed ? "titleCompleted" : string.Empty)
+                        id=@String.Format("titleCompleted_{0}", Model.Elements[i].Id)>
+                        @Html.DisplayFor(m => m.Elements[i].Title)
+                    </td>
+                    <td>
+                        @if (Model.Elements[i].HighPriority)
+                        {
+                            <img src="~/Content/Images/important.png" class="imgImportant"
+                                 id=@String.Format("imgImportant_{0}", Model.Elements[i].Id) />
+                        }
+                    </td>
+                    @*<td>@Convert.ToDateTime(item.CreatedDateTime).ToString("M/d/yy h:mm tt")</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Save changes" />
 }

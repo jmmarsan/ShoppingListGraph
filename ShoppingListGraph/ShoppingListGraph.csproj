@@ -294,6 +294,7 @@
     <Compile Include="Models\CachedUser.cs" />
     <Compile Include="Models\ThingsToBuy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ThingsToBuyService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TokenStorage\SessionTokenStore.cs" />
   </ItemGroup>

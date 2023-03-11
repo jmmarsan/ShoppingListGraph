@@ -7,6 +7,7 @@ namespace ShoppingListGraph.Models
 {
     public class ThingsToBuy
     {
+        public string Id { get; set; }
         public List<ShoppingListGraph.Models.ListElement> Elements { get; set; }
 
         public ThingsToBuy() {
