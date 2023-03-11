@@ -15,7 +15,7 @@
             <tr>
                 <th scope="col">Status</th>
                 <th scope="col">Item</th>
-                <th scope="col">Importance</th>
+                <th scope="col">High priority</th>
                 @*<th scope="col">Created</th>*@
             </tr>
         </thead>
@@ -26,23 +26,25 @@
 
                     <td>
                         @Html.HiddenFor(m => m.Elements[i].Id)
-                        @Html.CheckBoxFor(m => m.Elements[i].Completed, new { @class = "chkCompleted" })
+                        @Html.CheckBoxFor(m => m.Elements[i].Completed,
+                                new { @class = "chkCompleted",
+                                    onclick = "this.form.submit();"
+                                })
                     </td>
-                    <td class=@String.Format("{0}", Model.Elements[i].Completed ? "titleCompleted" : string.Empty)
-                        id=@String.Format("titleCompleted_{0}", Model.Elements[i].Id)>
+                    <td class=@String.Format("{0}", Model.Elements[i].Completed ? "titleCompleted" : string.Empty)>
                         @Html.DisplayFor(m => m.Elements[i].Title)
                     </td>
-                    <td>
-                        @if (Model.Elements[i].HighPriority)
-                        {
-                            <img src="~/Content/Images/important.png" class="imgImportant"
-                                 id=@String.Format("imgImportant_{0}", Model.Elements[i].Id) />
-                        }
+                    <td>                        
+                        @Html.CheckBoxFor(m => m.Elements[i].HighPriority,
+                                new
+                                     {
+                                         @class = "chkHighPriority",
+                                    onclick = "this.form.submit();"
+                                })
                     </td>
                     @*<td>@Convert.ToDateTime(item.CreatedDateTime).ToString("M/d/yy h:mm tt")</td>*@
                 </tr>
             }
         </tbody>
     </table>
-    <input type="submit" value="Save changes" />
 }

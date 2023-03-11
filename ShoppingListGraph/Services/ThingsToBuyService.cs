@@ -39,12 +39,13 @@ namespace ShoppingListGraph.Services
             };
         }
 
-        public async void SaveChanges(ThingsToBuy edit)
+        public async Task<int> SaveChanges(ThingsToBuy edit)
         {
             foreach (ListElement element in edit.Elements)
             {
-                TodoTask task = await GraphHelper.PatchTodoTaskAsync(edit.Id, element.Id, element.Completed);
+                await GraphHelper.PatchTodoTaskAsync(edit.Id, element.Id, element.Completed, element.HighPriority);
             }
+            return 200;
         }
     }
 }

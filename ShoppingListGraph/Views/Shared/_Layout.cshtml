@@ -35,10 +35,6 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item" data-turbolinks="false">
-                            @Html.ActionLink("Calendar", "Index", "Calendar", new { area = "" },
-                                new { @class = ViewBag.Current == "Calendar" ? "nav-link active" : "nav-link" })
-                        </li>
-                        <li class="nav-item" data-turbolinks="false">
                             @Html.ActionLink("Shopping list", "Index", "ShoppingList", new { area = "" },
                                 new { @class = ViewBag.Current == "ShoppingList" ? "nav-link active shoppinglistbtn" : "nav-link shoppinglistbtn" })
                         </li>

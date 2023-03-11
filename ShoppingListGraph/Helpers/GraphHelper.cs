@@ -46,7 +46,7 @@ namespace ShoppingListGraph.Helpers
             return shoppingList;
         }
 
-        public static async Task<TodoTask> PatchTodoTaskAsync(string id, string elementId, bool completed)
+        public static async Task<TodoTask> PatchTodoTaskAsync(string id, string elementId, bool completed, bool highPriority)
         {
             var graphClient = GetAuthenticatedClient();
 
@@ -54,6 +54,7 @@ namespace ShoppingListGraph.Helpers
             {
                 ODataType = null,
                 Status = completed? Microsoft.Graph.TaskStatus.Completed : Microsoft.Graph.TaskStatus.NotStarted,
+                Importance = highPriority? Importance.High : Importance.Normal
             });
         }
 
@@ -68,21 +69,6 @@ namespace ShoppingListGraph.Helpers
 
         #endregion
 
-        #region "Calendar"
-
-        public static async Task<IEnumerable<Event>> GetEventsAsync()
-        {
-            var graphClient = GetAuthenticatedClient();
-
-            var events = await graphClient.Me.Events.Request()
-                .Select("subject,organizer,start,end")
-                .OrderBy("createdDateTime DESC")
-                .GetAsync();
-
-            return events.CurrentPage;
-        }
-
-        #endregion
 
         #region "Authentication"
 
