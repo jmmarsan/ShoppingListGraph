@@ -27,14 +27,16 @@
                     <td>
                         @Html.HiddenFor(m => m.Elements[i].Id)
                         @Html.CheckBoxFor(m => m.Elements[i].Completed,
-                                new { @class = "chkCompleted",
+                                new
+                                     {
+                                         @class = "chkCompleted",
                                     onclick = "this.form.submit();"
                                 })
                     </td>
                     <td class=@String.Format("{0}", Model.Elements[i].Completed ? "titleCompleted" : string.Empty)>
                         @Html.DisplayFor(m => m.Elements[i].Title)
                     </td>
-                    <td>                        
+                    <td>
                         @Html.CheckBoxFor(m => m.Elements[i].HighPriority,
                                 new
                                      {

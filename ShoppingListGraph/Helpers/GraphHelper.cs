@@ -46,15 +46,16 @@ namespace ShoppingListGraph.Helpers
             return shoppingList;
         }
 
-        public static async Task<TodoTask> PatchTodoTaskAsync(string id, string elementId, bool completed, bool highPriority)
+        public static async Task<TodoTask> PatchTodoTaskAsync(string id, ListElement element)
         {
             var graphClient = GetAuthenticatedClient();
 
-            return await graphClient.Me.Todo.Lists[id].Tasks[elementId].Request().UpdateAsync(new TodoTask
+            return await graphClient.Me.Todo.Lists[id].Tasks[element.Id].Request().UpdateAsync(new TodoTask
             {
                 ODataType = null,
-                Status = completed? Microsoft.Graph.TaskStatus.Completed : Microsoft.Graph.TaskStatus.NotStarted,
-                Importance = highPriority? Importance.High : Importance.Normal
+                Status = element.Completed? Microsoft.Graph.TaskStatus.Completed : Microsoft.Graph.TaskStatus.NotStarted,
+                Importance = element.HighPriority? Importance.High : Importance.Normal,
+                Title = element.Title
             });
         }
 

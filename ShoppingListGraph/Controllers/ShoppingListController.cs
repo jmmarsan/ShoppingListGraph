@@ -29,10 +29,7 @@ namespace ShoppingListGraph.Controllers
         {
             ThingsToBuyService service = new ThingsToBuyService();
             //Save changes
-            await service.SaveChanges(edit);
-           
-            //Get data
-            ThingsToBuy thingsToBuy = await service.GetData();
+            ThingsToBuy thingsToBuy = await service.SaveChanges(edit);
             return View(thingsToBuy);
         }
     }

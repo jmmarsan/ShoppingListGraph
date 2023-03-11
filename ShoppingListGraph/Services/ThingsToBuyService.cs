@@ -35,17 +35,17 @@ namespace ShoppingListGraph.Services
             return new ThingsToBuy
             {
                 Id = shoppingList.Id,
-                Elements = elements.OrderByDescending(t => t.CreatedDateTime).OrderByDescending(t => t.HighPriority).OrderBy(t => t.Completed).ToList()
+                Elements = elements
             };
         }
 
-        public async Task<int> SaveChanges(ThingsToBuy edit)
+        public async Task<ThingsToBuy> SaveChanges(ThingsToBuy edit)
         {
             foreach (ListElement element in edit.Elements)
             {
-                await GraphHelper.PatchTodoTaskAsync(edit.Id, element.Id, element.Completed, element.HighPriority);
+                await GraphHelper.PatchTodoTaskAsync(edit.Id, element);
             }
-            return 200;
+            return await GetData();
         }
     }
 }
