@@ -3,7 +3,7 @@
 
 
 
-# ShoppingListGraph
+# Shopping List Graph
 Manage your shopping list using Microsoft Graph
 
 Published on [https://shoppinglistgraph.azurewebsites.net/](https://shoppinglistgraph.azurewebsites.net/)
