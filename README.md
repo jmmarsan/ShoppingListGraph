@@ -9,4 +9,4 @@ Manage your shopping list using Microsoft Graph
 Published on [https://shoppinglistgraph.azurewebsites.net/](https://shoppinglistgraph.azurewebsites.net/)
 
 
-<p align="center"><img src="https://cdn-icons-png.flaticon.com/512/1238/1238942.png"  width="20%" height="20%"></p>
+<p align="center"><a href="https://shoppinglistgraph.azurewebsites.net/"><img src="https://cdn-icons-png.flaticon.com/512/1238/1238942.png"  width="15%" height="15%"></a></p>
